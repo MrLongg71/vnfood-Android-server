@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="@string/list_menu"
+        android:textSize="@dimen/text_size_40"
+        android:fontFamily="@font/oswald"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="@dimen/margin20"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerListFood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

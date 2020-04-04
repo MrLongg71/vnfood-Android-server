@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/gradient_black_transparent"
+        tools:context=".src.utils.SplashScreenActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/margin150"
+            android:fontFamily="@font/oswald"
+            android:lineSpacingMultiplier="1.0"
+            android:lines="4"
+            android:text="@string/title_splash"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_50"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnLoginSplash"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:text="@string/login"
+            android:textSize="@dimen/text_size_20"
+            android:layout_marginRight="@dimen/margin20"
+            android:layout_marginLeft="@dimen/margin20"
+            android:layout_marginTop="@dimen/margin150"
+            android:background="@drawable/custom_round_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</FrameLayout>

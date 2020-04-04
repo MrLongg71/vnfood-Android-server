@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">VNFood</string>
+    <string name="title_splash">DELIVERED \nFAST FOOD \nTO YOUR \nDOOR.</string>
+    <string name="login">Log In</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="title_login">Login to your account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="didn_t_have_an_account">Didn\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="username">Username</string>
+    <string name="phone">Phone</string>
+    <string name="explore">Explore</string>
+    <string name="my_order">My order</string>
+    <string name="favourite">Favourite</string>
+    <string name="profile">Profile</string>
+
+    <integer-array name="img_id_arr">
+        <item>@drawable/background</item>
+        <item>@drawable/background</item>
+        <item>@drawable/background</item>
+        <item>@drawable/background</item>
+    </integer-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+    <string name="new_food">New Food</string>
+    <string name="hot_food">Hot Food</string>
+    <string name="vn_food">VN FOOD</string>
+    <string name="list_menu">List Menu</string>
+    <string name="order">Order</string>
+    <string name="new_try_pickup">New!Try Pickup</string>
+    <string name="description_order_food">Pickup on your time. Your order is ready when you are.</string>
+    <string name="order_now">Order Now</string>
+    <string name="write_comment">Write comment</string>
+    <string name="submit">Submit</string>
+    <string name="review">Review</string>
+    <string name="verify">Verify</string>
+    <string name="places">Places</string>
+    <string name="setting">Setting</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="your_order_is_successfully">Your order is successfully.</string>
+    <string name="cart_empty">Cart Empty</string>
+</resources>

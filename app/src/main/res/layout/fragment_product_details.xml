@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".src.module.explore.view.ProductDetailsFragment">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.chabbal.slidingdotsplash.SlidingSplashView
+                android:id="@+id/introProductDetail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+            </com.chabbal.slidingdotsplash.SlidingSplashView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/gradient_black_transparent" />
+
+            <ImageView
+                android:layout_margin="@dimen/margin10"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+            <ImageView
+                android:layout_margin="@dimen/margin10"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_favorite_border_black_24dp" />
+
+            <TextView
+                android:id="@+id/txtNameFoodNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/lobster"
+                android:gravity="center"
+                android:text="Gà nướng"
+                android:textColor="#fff"
+                android:textSize="@dimen/text_size_40" />
+
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/bodyProductDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_border_login"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtRateFoodNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_star_24dp"
+                    android:gravity="center"
+                    android:text="4.4"
+                    android:textSize="@dimen/text_size_20" />
+
+                <TextView
+                    android:id="@+id/txtCommentFoodNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size5dp"
+                    android:background="#fff"
+                    android:drawableLeft="@drawable/ic_insert_comment_24dp"
+                    android:gravity="center"
+                    android:text="4.4"
+                    android:textSize="@dimen/text_size_20" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin10"
+                android:fontFamily="@font/lobster"
+                android:text="Day la mo ta"
+                android:textSize="@dimen/text_size_20" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#2AFF8C00"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin10"
+                    android:layout_weight="6"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/oswald"
+                        android:text="@string/new_try_pickup"
+                        android:textColor="@color/colorOrange"
+                        android:textSize="@dimen/text_size_15"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size5dp"
+                        android:fontFamily="@font/lobster"
+                        android:text="@string/description_order_food"
+                        android:textSize="@dimen/text_size_15"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin20"
+                    android:layout_weight="4"
+                    android:background="@drawable/custom_round_button"
+                    android:text="@string/order_now"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_size_20" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtWriteComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald"
+            android:gravity="center"
+            android:text="@string/write_comment"
+            android:textSize="@dimen/text_size_20" />
+
+        <LinearLayout
+            android:id="@+id/layoutWriteComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin30"
+                android:layout_marginRight="@dimen/margin30"
+                android:numStars="5" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin30"
+                android:layout_marginTop="@dimen/margin10"
+                android:layout_marginRight="@dimen/margin30"
+                android:background="@drawable/custom_edittext_round"
+                android:hint="@string/write_comment" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin20"
+                android:background="@drawable/custom_round_button"
+                android:paddingRight="@dimen/margin20"
+                android:paddingLeft="@dimen/margin20"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_20" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald"
+            android:text="@string/review"
+            android:textSize="@dimen/text_size_20" />
+
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

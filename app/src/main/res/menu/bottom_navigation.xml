@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_explore"
+        android:icon="@drawable/ic_explore_unclick_24dp"
+        android:title="@string/explore" />
+
+    <item
+        android:id="@+id/navigation_my_order"
+        android:icon="@drawable/ic_playlist_add_check_unclick_24dp"
+        android:title="@string/my_order" />
+
+    <item
+        android:id="@+id/navigation_favourite"
+        android:icon="@drawable/ic_favorite_border_unclick_24dp"
+        android:title="@string/favourite" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_perm_identity_unclick_24dp"
+        android:title="@string/profile" />
+</menu>

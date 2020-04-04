@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    ****/// App ///***
+    <color name="colorBlack">#D2000000</color>
+    <color name="colorBlackTransparent">#00000000</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorOrange">#FF8C00</color>
+    <color name="colorActive">#CD3EC944</color>
+    <color name="colorStroke">#979797</color>
+    <color name="colorStrokeTransparent">#75E6E5E5</color>
+
+
+</resources>
