@@ -1,11 +1,54 @@
 <resources>
 
     <!-- Base application theme. -->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.DayNight">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+
+
+<!--        <item name="colorBlack">@color/colorBlack</item>-->
+<!--        <item name="colorBlackTransparent">@color/colorBlackTransparent</item>-->
+<!--        <item name="colorWhite">@color/colorWhite</item>-->
+<!--        <item name="colorOrange">@color/colorOrange</item>-->
+<!--        <item name="colorActive">@color/colorActive</item>-->
+<!--        <item name="colorStroke">@color/colorStroke</item>-->
+<!--        <item name="colorStrokeTransparent">@color/colorStrokeTransparent</item>-->
+<!--    </style>-->
+
+<!--    <style name="AppTheme.Base.Night" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+
+<!--        <item name="colorBlack">@color/colorWhite</item>-->
+<!--        <item name="colorBlackTransparent">@color/colorBlackTransparent</item>-->
+<!--        <item name="colorWhite">@color/colorBlack</item>-->
+<!--        <item name="colorOrange">@color/colorOrange</item>-->
+<!--        <item name="colorActive">@color/colorActive</item>-->
+<!--        <item name="colorStroke">@color/colorStroke</item>-->
+<!--        <item name="colorStrokeTransparent">@color/colorStrokeTransparent</item>-->
+
+<!--    </style>-->
+<!--    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>-->
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <item name="colorAccent">@color/colorAccent</item>
+
+
+                <item name="colorBlack">@color/colorBlack</item>
+                <item name="colorBlackTransparent">@color/colorBlackTransparent</item>
+                <item name="colorWhite">@color/colorWhite</item>
+                <item name="colorOrange">@color/colorOrange</item>
+                <item name="colorActive">@color/colorActive</item>
+                <item name="colorStroke">@color/colorStroke</item>
+                <item name="colorStrokeTransparent">@color/colorStrokeTransparent</item>
+
     </style>
+
 
 </resources>

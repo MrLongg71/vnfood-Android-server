@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin10"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvatarReview"
+            android:src="@drawable/background"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtNameUserReview"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_20"
+            android:layout_margin="@dimen/margin10"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="@+id/imgAvatarReview"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="fdsf" />
+
+        <TextView
+            android:id="@+id/txtRateReview"
+            tools:text="7.0"
+            android:textColor="@color/colorActive"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+        android:layout_margin="@dimen/margin10"
+        android:id="@+id/txtComment"
+        android:textSize="@dimen/text_size_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:background="@color/colorOrange"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

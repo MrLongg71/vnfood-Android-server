@@ -1,201 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
     android:layout_marginTop="@dimen/margin30"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".src.module.profile.view.ProfileFragment">
 
-    <LinearLayout
-        android:layout_margin="@dimen/margin20"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+        android:id="@+id/progressBarProfile"
+        android:layout_width="50dp"
+        android:visibility="gone"
+        android:layout_height="50dp"
+        android:background="@drawable/round_icon_cart"
+        android:gravity="center"
+        gpb:layout_constraintBottom_toBottomOf="parent"
+        gpb:layout_constraintEnd_toEndOf="parent"
+        gpb:layout_constraintStart_toStartOf="parent"
+        gpb:layout_constraintTop_toTopOf="parent"
+        gpb:type="nexus_rotation_cross" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/backgr"
-          />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
         <LinearLayout
-            android:layout_marginStart="@dimen/margin20"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:fontFamily="@font/oswald"
-                android:textSize="@dimen/text_size_20"
-                android:text="Cameron Cook"
-                android:textColor="@color/colorBlack"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin20"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/backgr" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_marginTop="@dimen/margin10"
-                android:text="@string/verify"
-                android:paddingRight="@dimen/margin20"
-                android:fontFamily="@font/oswald"
-                android:gravity="center_vertical"
-                android:drawableStart="@drawable/ic_check_24dp"
-                android:drawablePadding="@dimen/size5dp"
-                android:paddingTop="@dimen/size5dp"
-                android:paddingBottom="@dimen/size5dp"
-                android:paddingLeft="@dimen/margin20"
-                android:textColor="@color/colorWhite"
-                android:background="@drawable/custom_round_10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin20"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtNameProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/oswald"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_20"
+                    tools:text="Cameron Cook" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:background="@drawable/custom_round_10dp"
+                    android:drawableStart="@drawable/ic_check_24dp"
+                    android:drawablePadding="@dimen/size5dp"
+                    android:fontFamily="@font/oswald"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/margin20"
+                    android:paddingTop="@dimen/size5dp"
+                    android:paddingRight="@dimen/margin20"
+                    android:paddingBottom="@dimen/size5dp"
+                    android:text="@string/verify"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:src="@drawable/ic_notification" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/oswald"
+                android:text="@string/my_order"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_20" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:src="@drawable/ic_chevron_right_24dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin20"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:src="@drawable/ic_farivous" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/oswald"
+                android:text="@string/favourite"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_20" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:src="@drawable/ic_chevron_right_24dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin20"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:src="@drawable/ic_place_black_24dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/oswald"
+                android:text="@string/places"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_20" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:src="@drawable/ic_chevron_right_24dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin30" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:src="@drawable/ic_group_add_24dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/oswald"
+                android:text="@string/invite_friends"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_20" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:src="@drawable/ic_chevron_right_24dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin20"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:src="@drawable/ic_settings_black_24dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/oswald"
+                android:text="@string/setting"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_20" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:src="@drawable/ic_chevron_right_24dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin20"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:src="@drawable/ic_wb_sunny_black_24dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/oswald"
+                android:text="@string/darkmode"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_20" />
+            <Switch
+                android:id="@+id/switchTheme"
+                android:layout_weight="2"
+                android:onClick="switchTheme"
+                android:layout_marginEnd="@dimen/margin20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:weightSum="10"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_weight="2"
-            android:src="@drawable/ic_notification"
-            android:layout_width="0dp"
-            android:layout_height="40dp"/>
-        <TextView
-            android:text="@string/my_order"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oswald"
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:layout_weight="2"
-            android:gravity="right"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_chevron_right_24dp"
-            android:layout_width="0dp"
-            android:layout_height="30dp"/>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="@dimen/margin20"
-        android:weightSum="10"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_weight="2"
-            android:src="@drawable/ic_farivous"
-            android:layout_width="0dp"
-            android:layout_height="40dp"/>
-        <TextView
-            android:text="@string/favourite"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oswald"
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:layout_weight="2"
-            android:gravity="right"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_chevron_right_24dp"
-            android:layout_width="0dp"
-            android:layout_height="30dp"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="@dimen/margin20"
-        android:weightSum="10"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_weight="2"
-            android:src="@drawable/ic_place_black_24dp"
-            android:layout_width="0dp"
-            android:layout_height="40dp"/>
-        <TextView
-            android:text="@string/places"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oswald"
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:layout_weight="2"
-            android:gravity="right"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_chevron_right_24dp"
-            android:layout_width="0dp"
-            android:layout_height="30dp"/>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/margin30"/>
-    <LinearLayout
-        android:layout_marginTop="@dimen/margin10"
-        android:weightSum="10"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_weight="2"
-            android:src="@drawable/ic_group_add_24dp"
-            android:layout_width="0dp"
-            android:layout_height="40dp"/>
-        <TextView
-            android:text="@string/invite_friends"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oswald"
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:layout_weight="2"
-            android:gravity="right"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_chevron_right_24dp"
-            android:layout_width="0dp"
-            android:layout_height="30dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/margin20"
-        android:weightSum="10"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_weight="2"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_width="0dp"
-            android:layout_height="40dp"/>
-        <TextView
-            android:text="@string/setting"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/colorBlack"
-            android:fontFamily="@font/oswald"
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:layout_weight="2"
-            android:gravity="right"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_chevron_right_24dp"
-            android:layout_width="0dp"
-            android:layout_height="30dp"/>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

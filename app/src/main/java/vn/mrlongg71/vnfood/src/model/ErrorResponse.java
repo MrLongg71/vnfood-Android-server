@@ -1,11 +1,14 @@
 package vn.mrlongg71.vnfood.src.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ErrorResponse {
+    @Expose
     @SerializedName("statusCode")
     private int statusCode;
 
+    @Expose
     @SerializedName("err")
     private String err;
 

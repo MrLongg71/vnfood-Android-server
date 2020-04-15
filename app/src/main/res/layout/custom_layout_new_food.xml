@@ -1,51 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_margin="7dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_item_new_food"
+    app:cardCornerRadius="@dimen/margin10"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imgFoodNew"
-        android:src="@drawable/background"
-        android:scaleType="fitXY"
-        app:riv_corner_radius="15dip"
-        android:layout_width="200dp"
-        android:layout_height="300dp" />
-
-    <TextView
-        android:id="@+id/txtNameFoodNew"
-        android:text="abc"
-        android:textSize="@dimen/text_size_20"
-        android:fontFamily="@font/oswald"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
     <LinearLayout
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgFoodNew"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/background"
+                app:riv_corner_radius="15dip" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/custom_promo"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/txtTitleMar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/news"
+                    android:textColor="@color/colorOrange"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp">
+
+                </TextView>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+
         <TextView
-            android:id="@+id/txtRateFoodNew"
-            android:text="4.4"
-            android:drawableStart="@drawable/ic_star_24dp"
+            android:id="@+id/txtNameFoodNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginStart="@dimen/margin10"
+            android:textSize="@dimen/text_size_20" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/text_size_15"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/txtCommentFoodNew"
-            android:text="4.4"
-            android:drawableStart="@drawable/ic_insert_comment_24dp"
-            android:gravity="center"
-            android:layout_marginLeft="@dimen/margin10"
-            android:textSize="@dimen/text_size_15"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/txtRateFoodNew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_15" />
+
+            <TextView
+                android:id="@+id/txtCommentFoodNew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin10"
+                android:layout_weight="3"
+                android:drawableStart="@drawable/icon_comment"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_15" />
+        </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>
+

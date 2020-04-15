@@ -1,44 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBlackTransparent"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.module.myorder.view.MyOrderFragment">
+    android:background="@color/colorBlackTransparent"
+    android:orientation="vertical"
+    tools:context=".src.module.myorder.view.MyOrderActivity">
+
+    <Toolbar
+        android:id="@+id/toolbar_MyOrder"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:navigationIcon="@drawable/ic_keyboard_backspace_24dp"
+        android:title="@string/my_order"
+        android:titleTextColor="@color/colorOrange" />
 
     <LinearLayout
         android:id="@+id/layoutCartEmpty"
-        android:gravity="center"
-        android:visibility="gone"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <ImageView
-            android:padding="@dimen/margin50"
-            android:background="@drawable/round_icon_cart"
-            android:src="@drawable/ic_cart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_icon_cart"
+            android:padding="@dimen/margin50"
+            android:src="@drawable/ic_cart" />
+
         <TextView
-            android:gravity="center"
-            android:fontFamily="@font/oswald"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/text_size_30"
-            android:text="@string/cart_empty"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald"
+            android:gravity="center"
+            android:text="@string/cart_empty"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_30" />
 
 
     </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/layout_bottom_sheet"
+        android:id="@+id/layoutCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        >
+        android:visibility="gone">
 
 
         <androidx.core.widget.NestedScrollView
@@ -56,62 +66,88 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
 
-                        android:padding="10dp"
-                        android:text="dfdfm"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtTotalPriceCart"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    />
+                    android:layout_height="3dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerItemCartFoodMenuRes"
+                    android:id="@+id/recyclerProductCart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
-                   />
+                    android:background="@color/colorBlackTransparent" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtTotalAmountCart"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="add ress"
-                    android:textColor="#444"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:textSize="15sp"
-                    android:textColor="#444"
-                    android:layout_marginTop="5dp"
+                    android:id="@+id/txtTotalPriceCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/txtAddressOrderDetails"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#444"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtGift"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin10"
+                        android:layout_weight="7"
+                        android:background="@drawable/custom_edittext_round"
+                        android:hint="@string/gift_code" />
+
+                    <Button
+                        android:id="@+id/btnCheckGift"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/custom_round2_button"
+                        android:text="@string/apply"
+
+                        android:textColor="#fff" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtResultCheckGift"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin10"
+                    android:textSize="@dimen/text_size_15" />
 
                 <Button
-                    android:id="@+id/btnBookFoodMenuRes"
+                    android:id="@+id/btnCheckoutCart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -119,6 +155,7 @@
                     android:background="@drawable/custom_round_button"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="10dp"
+                    android:text="@string/check_out"
 
                     android:textColor="#fff" />
 

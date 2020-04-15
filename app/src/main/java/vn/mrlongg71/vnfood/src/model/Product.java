@@ -1,27 +1,128 @@
 package vn.mrlongg71.vnfood.src.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Product {
-    private String productID,name,description,cateID;
-    private double rate;
-    private List<Images> imagesProduct;
 
-    public Product(String productID, String name, String description, String cateID, double rate, List<Images> imagesProduct) {
-        this.productID = productID;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Product implements Parcelable {
+
+    @SerializedName("_id")
+    @Expose
+    private String id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("price")
+    @Expose
+    private String price;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("rate")
+    @Expose
+    private double rate;
+    @SerializedName("countComment")
+    @Expose
+    private int countComment;
+    @SerializedName("cateId")
+    @Expose
+    private String cateId;
+    @SerializedName("productId")
+    @Expose
+    private String productId;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("update_at")
+    @Expose
+    private String updateAt;
+    @SerializedName("__v")
+    @Expose
+    private Integer v;
+    @SerializedName("cate")
+    @Expose
+    private List<Cate> cate = null;
+
+    public Product(String id, String name, String description, String price, String image, double rate, int countComment, String cateId, String productId, String createdAt, String updateAt, Integer v, List<Cate> cate) {
+        this.id = id;
         this.name = name;
         this.description = description;
-        this.cateID = cateID;
+        this.price = price;
+        this.image = image;
         this.rate = rate;
-        this.imagesProduct = imagesProduct;
+        this.countComment = countComment;
+        this.cateId = cateId;
+        this.productId = productId;
+        this.createdAt = createdAt;
+        this.updateAt = updateAt;
+        this.v = v;
+        this.cate = cate;
     }
 
-    public String getProductID() {
-        return productID;
+    public Product() {
     }
 
-    public void setProductID(String productID) {
-        this.productID = productID;
+    protected Product(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+        price = in.readString();
+        image = in.readString();
+        rate = in.readDouble();
+        countComment = in.readInt();
+        cateId = in.readString();
+        productId = in.readString();
+        createdAt = in.readString();
+        updateAt = in.readString();
+        if (in.readByte() == 0) {
+            v = null;
+        } else {
+            v = in.readInt();
+        }
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public int getCountComment() {
+        return countComment;
+    }
+
+    public void setCountComment(int countComment) {
+        this.countComment = countComment;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -40,27 +141,94 @@ public class Product {
         this.description = description;
     }
 
-    public String getCateID() {
-        return cateID;
+    public String getPrice() {
+        return price;
     }
 
-    public void setCateID(String cateID) {
-        this.cateID = cateID;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public double getRate() {
-        return rate;
+    public String getImage() {
+        return image;
     }
 
-    public void setRate(double rate) {
-        this.rate = rate;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public List<Images> getImagesProduct() {
-        return imagesProduct;
+    public String getCateId() {
+        return cateId;
     }
 
-    public void setImagesProduct(List<Images> imagesProduct) {
-        this.imagesProduct = imagesProduct;
+    public void setCateId(String cateId) {
+        this.cateId = cateId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(String updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public Integer getV() {
+        return v;
+    }
+
+    public void setV(Integer v) {
+        this.v = v;
+    }
+
+    public List<Cate> getCate() {
+        return cate;
+    }
+
+    public void setCate(List<Cate> cate) {
+        this.cate = cate;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(price);
+        dest.writeString(image);
+        dest.writeDouble(rate);
+        dest.writeInt(countComment);
+        dest.writeString(cateId);
+        dest.writeString(productId);
+        dest.writeString(createdAt);
+        dest.writeString(updateAt);
+        if (v == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(v);
+        }
     }
 }

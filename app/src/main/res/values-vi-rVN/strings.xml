@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VNFood</string>
+    <string name="login">Đăng nhập</string>
+    <string name="title_login">Đăng nhập vào tài khoản</string>
+    <string name="password">Mật khẩu</string>
+    <string name="forgot_your_password">Quên mật khẩu</string>
+    <string name="didn_t_have_an_account">Bạn chưa có tài khoản?</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="create_an_account">Tạo tài khoản</string>
+    <string name="username">Tên</string>
+    <string name="phone">SĐT</string>
+    <string name="explore">Khám phá</string>
+    <string name="my_order">Đơn hàng</string>
+    <string name="favourite">Yêu thích</string>
+    <string name="profile">Tài khoản</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="order">Đặt hàng</string>
+    <string name="new_try_pickup">Mới! Đặt hàng</string>
+    <string name="description_order_food">Bạn đã sẵn sàng đặt món</string>
+    <string name="order_now">Đặt ngay</string>
+    <string name="write_comment">Viết bình luận</string>
+    <string name="submit">Đăng</string>
+    <string name="review">Đánh giá</string>
+    <string name="verify">Xác nhận</string>
+    <string name="places">Địa chỉ</string>
+    <string name="setting">Cài đặt</string>
+    <string name="invite_friends">Mời bạn</string>
+    <string name="your_order_is_successfully">Đặt hàng thành công</string>
+    <string name="cart_empty">Giỏ hàng trống</string>
+    <string name="accept">Đồng ý</string>
+    <string name="cancel">Huỷ</string>
+    <string name="check_out">Thanh toán</string>
+    <string name="news">Mới</string>
+    <string name="cate">Loại món</string>
+    <string name="apply">Áp dụng</string>
+    <string name="favourite_empty">Yêu thích trống</string>
+    <string name="view_all">Xem tất cả</string>
+</resources>

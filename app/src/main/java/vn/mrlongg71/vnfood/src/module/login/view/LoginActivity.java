@@ -23,6 +23,7 @@ import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 import es.dmoral.toasty.Toasty;
 import vn.mrlongg71.vnfood.NavigationActivity;
 import vn.mrlongg71.vnfood.R;
+import vn.mrlongg71.vnfood.src.model.StoreKey;
 import vn.mrlongg71.vnfood.src.module.login.presenter.PresenterLogin;
 import vn.mrlongg71.vnfood.src.module.register.view.RegisterActivity;
 import vn.mrlongg71.vnfood.src.utils.DialogLoading;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getSizeDevice();
     }
 
-    private void getSizeDevice() {
+    public void getSizeDevice() {
         ViewGroup.LayoutParams paramsBody = bodyLogin.getLayoutParams();
         ViewGroup.LayoutParams paramsSplash = splashLogin.getLayoutParams();
         Display display = getWindowManager().getDefaultDisplay();
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         paramsSplash.height = (int) (size.y * 0.35);
         splashLogin.setLayoutParams(paramsSplash);
         bodyLogin.setLayoutParams(paramsBody);
-
+        StoreKey.setSize(size);
         splashLogin.setImageResources(new String[]{"https://media.cooky.vn/recipe/g6/52287/s320x320/cooky-recipe-cover-r52287.jpg", "https://media.cooky.vn/recipe/g6/52287/s320x320/cooky-recipe-cover-r52287.jpg", "https://media.cooky.vn/recipe/g6/52287/s320x320/cooky-recipe-cover-r52287.jpg"});
         splashLogin.setPaddingBottom(0, 50, 0, 0);
         splashLogin.setAnimPage();
@@ -72,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         presenterLogin = new PresenterLogin(this,getApplicationContext());
 
         edtEmailLogin.setText("mrlongg71@gmail.com");
-        edtPasswordLogin.setText("1234561");
+        edtPasswordLogin.setText("123456");
         btnLogin.setOnClickListener(this);
         signUpNew.setOnClickListener(this);
 

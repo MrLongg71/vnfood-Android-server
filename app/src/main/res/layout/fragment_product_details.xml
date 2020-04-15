@@ -2,14 +2,15 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto"
+    tools:context=".src.module.explore.view.ProductDetailsActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".src.module.explore.view.ProductDetailsFragment">
+        android:orientation="vertical">
 
 
         <FrameLayout
@@ -29,26 +30,29 @@
                 android:background="@drawable/gradient_black_transparent" />
 
             <ImageView
-                android:layout_margin="@dimen/margin10"
+                android:id="@+id/imgBackFoodDetails"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_margin="@dimen/margin10"
                 android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
             <ImageView
-                android:layout_margin="@dimen/margin10"
-
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:id="@+id/imgFavouriteFoodDetails"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="right"
+                android:layout_margin="@dimen/margin10"
                 android:src="@drawable/ic_favorite_border_black_24dp" />
 
             <TextView
-                android:id="@+id/txtNameFoodNew"
+                android:id="@+id/txtNameFoodDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/lobster"
                 android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="Gà nướng"
                 android:textColor="#fff"
                 android:textSize="@dimen/text_size_40" />
@@ -72,7 +76,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtRateFoodNew"
+                    android:id="@+id/txtRateFoodDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_star_24dp"
@@ -94,9 +98,12 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txtDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin10"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:fontFamily="@font/lobster"
                 android:text="Day la mo ta"
                 android:textSize="@dimen/text_size_20" />
@@ -135,6 +142,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btnOrderNowDetails"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -166,6 +174,7 @@
             android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/rateBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -174,6 +183,7 @@
                 android:numStars="5" />
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin30"
@@ -183,25 +193,39 @@
                 android:hint="@string/write_comment" />
 
             <Button
+                android:id="@+id/btnSubmitComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin20"
                 android:background="@drawable/custom_round_button"
-                android:paddingRight="@dimen/margin20"
                 android:paddingLeft="@dimen/margin20"
+                android:paddingRight="@dimen/margin20"
                 android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_size_20" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/oswald"
             android:text="@string/review"
             android:textSize="@dimen/text_size_20" />
-
+        <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+            android:id="@+id/progress_review"
+            android:visibility="gone"
+            android:background="@drawable/round_icon_cart"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            gpb:type="nexus_rotation_cross"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginBottom="@dimen/margin30"
+            android:id="@+id/recyclerReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

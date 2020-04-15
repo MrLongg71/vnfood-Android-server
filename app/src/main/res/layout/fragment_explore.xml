@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout_menu_res"
@@ -42,13 +44,14 @@
                 app:title="@string/vn_food">
 
 
+               <include layout="@layout/custom_badge"/>
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollMenuFoodRes"
+        android:id="@+id/nestedScrollMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -60,13 +63,18 @@
             android:layout_margin="@dimen/margin10"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin10"
-                android:background="@drawable/custom_edittext_round"
-                android:drawableStart="@drawable/ic_search_24dp"
-                android:hint="@string/search" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_weight="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin10"
+                    android:background="@drawable/custom_edittext_round"
+                    android:drawableStart="@drawable/ic_search_24dp"
+                    android:hint="@string/search" />
+
+
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -83,27 +91,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin20"
                 android:fontFamily="@font/oswald"
                 android:lineSpacingMultiplier="1.5"
-                android:text="@string/hot_food"
+                android:text="@string/all_food"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_40" />
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerHotFood"
+                android:id="@+id/recyclerAllProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp" />
+            <Button
+                android:id="@+id/btnViewAllProduct"
+                android:layout_marginBottom="@dimen/margin50"
+                android:background="@drawable/custom_round_button"
+                android:textColor="@color/white"
+                android:text="@string/view_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
 
     </androidx.core.widget.NestedScrollView>
-
+    <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+        android:id="@+id/progressExplore"
+        android:visibility="gone"
+        android:background="@drawable/round_icon_cart"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        gpb:type="nexus_rotation_cross"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
