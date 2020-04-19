@@ -12,7 +12,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,15 +24,17 @@ import com.nex3z.notificationbadge.NotificationBadge;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 import es.dmoral.toasty.Toasty;
 import vn.mrlongg71.vnfood.NavigationActivity;
 import vn.mrlongg71.vnfood.R;
-import vn.mrlongg71.vnfood.src.model.Images;
 import vn.mrlongg71.vnfood.src.model.Product;
 import vn.mrlongg71.vnfood.src.module.explore.IOnClickProduct;
 import vn.mrlongg71.vnfood.src.module.explore.adapter.NewFoodAdapter;
+import vn.mrlongg71.vnfood.src.module.explore.presenter.IBanner;
 import vn.mrlongg71.vnfood.src.module.explore.presenter.IProduct;
+import vn.mrlongg71.vnfood.src.module.explore.presenter.PresenterBanner;
 import vn.mrlongg71.vnfood.src.module.explore.presenter.PresenterProduct;
 import vn.mrlongg71.vnfood.src.utils.DialogLoading;
 import vn.mrlongg71.vnfood.src.utils.ItemOffsetDecoration;
@@ -41,13 +42,15 @@ import vn.mrlongg71.vnfood.src.utils.ItemOffsetDecoration;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ExploreFragment extends Fragment implements IProduct.IViewProduct, IOnClickProduct {
+public class ExploreFragment extends Fragment implements IProduct.IViewProduct, IBanner.IViewBanner, IOnClickProduct {
     private RecyclerView recyclerNewFood, recyclerAllProduct;
     private SlidingSplashView splashExplore;
-    private List<Product> products,productsNew;
+    private List<Product> products, productsNew;
     private GoogleProgressBar progressBarExplore;
     private static NotificationBadge badge;
     private NestedScrollView nestedScrollMenu;
+    private androidx.appcompat.widget.Toolbar toolbarExplore;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,12 +65,19 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
     @SuppressLint("WrongConstant")
     private void onScrollListener() {
         nestedScrollMenu.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            if (scrollY == 0) {
+                toolbarExplore.setVisibility(View.GONE);
 
+            }
             if (scrollY > oldScrollY) {
+
+                toolbarExplore.setVisibility(View.VISIBLE);
+
+                toolbarExplore.setTitle("VN Food");
+
                 //hide
                 NavigationActivity.navigation.setVisibility(View.GONE);
 
-                NavigationActivity.navigation.setVisibility(View.VISIBLE);
                 TranslateAnimation animate = new TranslateAnimation(
                         0,                 // fromXDelta
                         0,                 // toXDelta
@@ -79,6 +89,10 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
 
 
             } else if (scrollY < oldScrollY) {
+                toolbarExplore.setVisibility(View.VISIBLE);
+
+                toolbarExplore.setTitle("VN Food");
+
                 //show
                 NavigationActivity.navigation.setVisibility(View.VISIBLE);
                 TranslateAnimation animate = new TranslateAnimation(
@@ -97,6 +111,7 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
 
     private void init(View view) {
         nestedScrollMenu = view.findViewById(R.id.nestedScrollMenu);
+        toolbarExplore = view.findViewById(R.id.toolbarExplore);
         recyclerNewFood = view.findViewById(R.id.recyclerNewFood);
         splashExplore = view.findViewById(R.id.splashExplore);
         progressBarExplore = view.findViewById(R.id.progressExplore);
@@ -104,8 +119,9 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
         FrameLayout framBadge = view.findViewById(R.id.layout_Badge);
         badge = framBadge.findViewById(R.id.badge);
         Button btnViewAllProduct = view.findViewById(R.id.btnViewAllProduct);
-        products  = new ArrayList<>();
-        productsNew  = new ArrayList<>();
+        PresenterBanner presenterBanner = new PresenterBanner(this);
+        products = new ArrayList<>();
+        productsNew = new ArrayList<>();
 
 
         btnViewAllProduct.setOnClickListener(v -> viewAllProduct());
@@ -118,8 +134,10 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
 
         DialogLoading.LoadingGoogle(true, progressBarExplore);
 
-        presenterProduct.getListProduct();
+
+        presenterProduct.getListProductMore(new Random().nextInt(5));
         presenterProduct.getNewListProduct();
+        presenterBanner.getBanner();
 
 
     }
@@ -129,18 +147,6 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
     }
 
     private void loadData() {
-        ArrayList<Images> images = new ArrayList<>();
-        String[] images2 = new String[3];
-        images.add(new Images("123", "https://media.cooky.vn/recipe/g6/52287/s320x320/cooky-recipe-cover-r52287.jpg"));
-        images.add(new Images("125", "https://media.cooky.vn/recipe/g6/52548/s320x320/cooky-recipe-cover-r52548.jpg"));
-        images.add(new Images("126", "https://media.cooky.vn/recipe/g6/52462/s320x320/cooky-recipe-637188772906574414.jpeg"));
-
-        for (int i = 0; i < images.size(); i++) {
-            images2[i] = (images.get(i).getImageUrl());
-        }
-
-        splashExplore.setImageResources(images2);
-        splashExplore.setAutoPage();
 
         NewFoodAdapter newFoodAdapter = new NewFoodAdapter(getActivity(), R.layout.custom_layout_new_food, productsNew, this, "News");
         NewFoodAdapter allFoodAdapter = new NewFoodAdapter(getActivity(), R.layout.custom_layout_new_food, products, this, "All");
@@ -172,7 +178,7 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
 
     @Override
     public void onGetListProductFailed(String msg) {
-        Toasty.error(Objects.requireNonNull(getActivity()),msg,Toasty.LENGTH_LONG).show();
+        Toasty.error(Objects.requireNonNull(getActivity()), msg, Toasty.LENGTH_LONG).show();
     }
 
     @Override
@@ -184,7 +190,7 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
 
     @Override
     public void onGetListNewFoodFailed(String msg) {
-        Toasty.error(Objects.requireNonNull(getActivity()),msg,Toasty.LENGTH_LONG).show();
+        Toasty.error(Objects.requireNonNull(getActivity()), msg, Toasty.LENGTH_LONG).show();
 
     }
 
@@ -216,4 +222,15 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
     }
 
 
+    @Override
+    public void onSuccessGetBanner(String[] listBanner) {
+        splashExplore.setImageResources(listBanner);
+        splashExplore.setAutoPage();
+    }
+
+    @Override
+    public void onFailGetBanner(String msg) {
+        Toasty.error(Objects.requireNonNull(getActivity()), msg, Toasty.LENGTH_LONG).show();
+
+    }
 }

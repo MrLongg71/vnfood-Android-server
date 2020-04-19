@@ -1,26 +1,64 @@
 package vn.mrlongg71.vnfood.src.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Images {
-    private String imageID,imageUrl;
 
-    public Images(String imageID, String imageUrl) {
-        this.imageID = imageID;
-        this.imageUrl = imageUrl;
+    @SerializedName("_id")
+    @Expose
+    private String id;
+    @SerializedName("imageId")
+    @Expose
+    private String imageId;
+    @SerializedName("url")
+    @Expose
+    private String url;
+    @SerializedName("productId")
+    @Expose
+    private String productId;
+    @SerializedName("__v")
+    @Expose
+    private Integer v;
+
+    public String getId() {
+        return id;
     }
 
-    public String getImageID() {
-        return imageID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setImageID(String imageID) {
-        this.imageID = imageID;
+    public String getImageId() {
+        return imageId;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public String getUrl() {
+        return url;
     }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public Integer getV() {
+        return v;
+    }
+
+    public void setV(Integer v) {
+        this.v = v;
+    }
+
 }

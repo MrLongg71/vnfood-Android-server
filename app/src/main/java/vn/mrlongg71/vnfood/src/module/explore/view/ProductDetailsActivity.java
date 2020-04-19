@@ -25,8 +25,6 @@ import com.chabbal.slidingdotsplash.SlidingSplashView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -36,12 +34,9 @@ import vn.mrlongg71.vnfood.R;
 import vn.mrlongg71.vnfood.src.model.OrderProvisional;
 import vn.mrlongg71.vnfood.src.model.Product;
 import vn.mrlongg71.vnfood.src.model.Review;
-import vn.mrlongg71.vnfood.src.module.explore.IOnClickProduct;
 import vn.mrlongg71.vnfood.src.module.explore.adapter.ReviewAdapter;
 import vn.mrlongg71.vnfood.src.module.explore.presenter.IProductDetails;
 import vn.mrlongg71.vnfood.src.module.explore.presenter.PresenterProductDetails;
-import vn.mrlongg71.vnfood.src.module.myorder.IOnClickCart;
-import vn.mrlongg71.vnfood.src.module.myorder.view.MyOrderActivity;
 import vn.mrlongg71.vnfood.src.network.EndPoint;
 import vn.mrlongg71.vnfood.src.utils.DialogLoading;
 
@@ -52,10 +47,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
 
     private SlidingSplashView introProductDetail;
     private LinearLayout bodyProductDetail, layoutWriteComment;
-    private TextView txtWriteComment, txtRateFoodDetails, txtNameFoodDetails, txtDescription;
+    private TextView txtRateFoodDetails,txtCommentFoodDetails,txtDescription,txtNameFoodDetails,txtNoComment;
     private TextInputEditText edtComment;
-    private ImageView imgFavouriteFoodDetails, imgBackFoodDetails;
-    private Button btnOrderNowDetails, btnSubmitComment;
+    private ImageView imgFavouriteFoodDetails;
     private RatingBar rateBar;
     private boolean checkedFavourite = false;
     private Product product;
@@ -63,7 +57,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
     private PresenterProductDetails presenterProductDetails;
     private RecyclerView recyclerReviewAdapter;
     private GoogleProgressBar progress_review;
-    ExploreFragment  exploreFragmentCallback =  new ExploreFragment();
+    ExploreFragment exploreFragmentCallback = new ExploreFragment();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +68,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
 //        getSizeDevice();
         getDataProduct();
         handlerFavourite(product.getProductId());
-//        presenterProductDetails.getComment(product.getProductId()
+        presenterProductDetails.getComment(product.getProductId());
     }
 
 
@@ -82,10 +76,13 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
         Intent intent = getIntent();
         if (intent != null) {
             product = intent.getParcelableExtra("product");
+            assert product != null;
             txtNameFoodDetails.setText(product.getName());
             txtDescription.setText(product.getDescription());
-            txtRateFoodDetails.setText("");
-            introProductDetail.setImageResources(new String[]{EndPoint.BASE_URL_PUBLIC + product.getImage()});
+            txtRateFoodDetails.setText( "❤️" +" 4");
+            txtCommentFoodDetails.setText("💬" + " 4");
+            presenterProductDetails.getImages(product.getProductId());
+
         }
     }
 
@@ -105,19 +102,21 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
     private void init() {
         introProductDetail = findViewById(R.id.introProductDetail);
         bodyProductDetail = findViewById(R.id.bodyProductDetail);
-        txtWriteComment = findViewById(R.id.txtWriteComment);
+        TextView txtWriteComment = findViewById(R.id.txtWriteComment);
         layoutWriteComment = findViewById(R.id.layoutWriteComment);
         txtDescription = findViewById(R.id.txtDescription);
         txtNameFoodDetails = findViewById(R.id.txtNameFoodDetails);
         txtRateFoodDetails = findViewById(R.id.txtRateFoodDetails);
-        imgBackFoodDetails = findViewById(R.id.imgBackFoodDetails);
+        txtCommentFoodDetails = findViewById(R.id.txtCommentFoodDetails);
+        ImageView imgBackFoodDetails = findViewById(R.id.imgBackFoodDetails);
         imgFavouriteFoodDetails = findViewById(R.id.imgFavouriteFoodDetails);
-        btnOrderNowDetails = findViewById(R.id.btnOrderNowDetails);
+        Button btnOrderNowDetails = findViewById(R.id.btnOrderNowDetails);
         edtComment = findViewById(R.id.edtComment);
-        btnSubmitComment = findViewById(R.id.btnSubmitComment);
+        Button btnSubmitComment = findViewById(R.id.btnSubmitComment);
         rateBar = findViewById(R.id.rateBar);
         recyclerReviewAdapter = findViewById(R.id.recyclerReview);
         progress_review = findViewById(R.id.progress_review);
+        txtNoComment = findViewById(R.id.txtNoComment);
 
         DialogLoading.LoadingGoogle(true, progress_review);
 
@@ -147,7 +146,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
     }
 
     private void orderProduct() {
-
         boolean exits = false;
         if (NavigationActivity.orderDetails.size() > 0) {
             for (OrderProvisional i : NavigationActivity.orderDetails) {
@@ -225,11 +223,28 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
 
         if (!reviews.isEmpty()) {
             showReview(reviews);
+        }else {
+            txtNoComment.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void onFailedGetComment(String msg) {
+        Toasty.error(getApplicationContext(), msg, Toasty.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSuccessGetImages(String[] images) {
+        if (images != null) {
+            introProductDetail.setImageResources(images);
+            introProductDetail.setAutoPage();
+        }else {
+            introProductDetail.setImageResources(new String[]{EndPoint.BASE_URL_PUBLIC + product.getImage()});
+        }
+    }
+
+    @Override
+    public void onFailGetImages(String msg) {
 
     }
 
@@ -239,7 +254,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
         recyclerReviewAdapter.setAdapter(reviewAdapter);
         reviewAdapter.notifyDataSetChanged();
     }
-
 
 
 }

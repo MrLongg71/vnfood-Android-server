@@ -1,30 +1,22 @@
 package vn.mrlongg71.vnfood.src.model;
 
 public class Order {
-        private String idOrder;
+    private String orderId;
         private int totalAmount;
         private double totalPrice;
-        private String date;
         private String status;
 
-    public Order(String idOrder, int totalAmount, double totalPrice, String date, String status) {
-        this.idOrder = idOrder;
+    public Order(String orderId, int totalAmount, double totalPrice, String status) {
+        this.orderId = orderId;
         this.totalAmount = totalAmount;
         this.totalPrice = totalPrice;
-        this.date = date;
         this.status = status;
     }
 
     public Order() {
     }
 
-    public String getIdOrder() {
-        return idOrder;
-    }
 
-    public void setIdOrder(String idOrder) {
-        this.idOrder = idOrder;
-    }
 
     public int getTotalAmount() {
         return totalAmount;
@@ -42,13 +34,7 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public String getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public String getStatus() {
         return status;

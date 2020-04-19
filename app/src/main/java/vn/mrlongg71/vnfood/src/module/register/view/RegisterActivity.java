@@ -1,8 +1,6 @@
 package vn.mrlongg71.vnfood.src.module.register.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
@@ -14,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 
-import java.sql.Timestamp;
-
 import es.dmoral.toasty.Toasty;
 import vn.mrlongg71.vnfood.R;
-import vn.mrlongg71.vnfood.src.module.login.view.LoginActivity;
+import vn.mrlongg71.vnfood.src.model.User;
 import vn.mrlongg71.vnfood.src.module.register.presenter.PresenterRegister;
 import vn.mrlongg71.vnfood.src.utils.DialogLoading;
 
@@ -38,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogLoading.LoadingGoogle(true,progress_register);
+                DialogLoading.LoadingGoogle(true, progress_register);
                 registerUser();
 
             }
@@ -47,11 +43,11 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
 
     private void registerUser() {
         if (validation()) {
-//            UserData user = new UserData();
-//            user.setUser().setEmail(edtEmailRegister.getText().toString().trim());
-//            user.setUsername(edtUserNameRegister.getText().toString().trim());
-//            user.setPassword(edtPasswordRegister.getText().toString().trim());
-//            user.setPhone(edtPhoneRegister.getText().toString().trim());
+            User user = new User();
+            user.setEmail(edtEmailRegister.getText().toString().trim());
+            user.setUsername(edtUserNameRegister.getText().toString().trim());
+            user.setPassword(edtPasswordRegister.getText().toString().trim());
+            user.setPhone(edtPhoneRegister.getText().toString().trim());
             presenterRegister.handlerRegister(null);
         }
 
@@ -60,13 +56,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
     private void initView() {
         androidx.appcompat.widget.Toolbar toolbarRegister = findViewById(R.id.toolbarRegister);
         progress_register = findViewById(R.id.progress_register);
-        toolbarRegister.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });
+        toolbarRegister.setNavigationOnClickListener(v -> finish());
         edtEmailRegister = findViewById(R.id.edtEmailRegister);
         edtPasswordRegister = findViewById(R.id.edtPasswordRegister);
         edtPhoneRegister = findViewById(R.id.edtPhoneRegister);
@@ -78,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
 
     @Override
     public void onSuccess() {
-        DialogLoading.LoadingGoogle(false,progress_register);
+        DialogLoading.LoadingGoogle(false, progress_register);
         Toasty.success(RegisterActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT, true).show();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -92,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
 
     @Override
     public void onFailed(String msg) {
-        DialogLoading.LoadingGoogle(false,progress_register);
+        DialogLoading.LoadingGoogle(false, progress_register);
         Toasty.error(RegisterActivity.this, msg, Toast.LENGTH_SHORT, true).show();
     }
 

@@ -1,12 +1,14 @@
 package vn.mrlongg71.vnfood.src.module.login.view;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -84,7 +86,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.signUpNew:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-
                 break;
             case R.id.btnLogin:
                 if(checkValid()){

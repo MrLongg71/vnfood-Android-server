@@ -1,15 +1,14 @@
 package vn.mrlongg71.vnfood.src.utils;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import vn.mrlongg71.vnfood.R;
 import vn.mrlongg71.vnfood.src.module.login.view.LoginActivity;
-import vn.mrlongg71.vnfood.src.network.APIVnFood;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -24,8 +23,9 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 findViewById(R.id.btnLoginSplash).setClickable(false);
-                startActivity( new Intent(SplashScreenActivity.this,LoginActivity.class));
+                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
                 finish();
+
             }
         });
     }

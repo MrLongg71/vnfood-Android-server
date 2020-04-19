@@ -61,9 +61,11 @@
             android:textSize="@dimen/text_size_20" />
 
         <LinearLayout
+            android:padding="@dimen/margin10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_gravity="center"
             android:orientation="horizontal"
             android:weightSum="10">
 
@@ -71,7 +73,7 @@
                 android:id="@+id/txtRateFoodNew"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="5"
                 android:gravity="center"
                 android:textSize="@dimen/text_size_15" />
 
@@ -79,11 +81,10 @@
                 android:id="@+id/txtCommentFoodNew"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin10"
-                android:layout_weight="3"
-                android:drawableStart="@drawable/icon_comment"
+                android:layout_weight="5"
                 android:gravity="center"
                 android:textSize="@dimen/text_size_15" />
+
         </LinearLayout>
 
     </LinearLayout>

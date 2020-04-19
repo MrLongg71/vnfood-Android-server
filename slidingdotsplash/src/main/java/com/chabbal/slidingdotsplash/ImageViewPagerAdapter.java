@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 
 /**
@@ -46,7 +47,7 @@ public class ImageViewPagerAdapter extends ViewPagerAdapter {
             mOnSetImageListener.setImage(imageView,position);
         }
         else{
-            Glide.with(mContext).load(mImageResources[position]).into(imageView);
+            Glide.with(mContext).load(mImageResources[position]).apply(new RequestOptions().placeholder(R.drawable.ic_photo_size_select_actual_black_24dp)).into(imageView);
 
         }
         return imageView;

@@ -3,13 +3,17 @@ package vn.mrlongg71.vnfood.src.module.myorder.view;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
@@ -21,7 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 import es.dmoral.toasty.Toasty;
 import vn.mrlongg71.vnfood.NavigationActivity;
@@ -30,10 +37,13 @@ import vn.mrlongg71.vnfood.src.model.Gift;
 import vn.mrlongg71.vnfood.src.model.Order;
 import vn.mrlongg71.vnfood.src.model.OrderDetails;
 import vn.mrlongg71.vnfood.src.model.OrderProvisional;
+import vn.mrlongg71.vnfood.src.module.explore.view.ExploreFragment;
 import vn.mrlongg71.vnfood.src.module.myorder.AdapterCartProvisional;
 import vn.mrlongg71.vnfood.src.module.myorder.IOnClickCart;
 import vn.mrlongg71.vnfood.src.module.myorder.IOrder;
 import vn.mrlongg71.vnfood.src.module.myorder.presenter.PresenterOrder;
+import vn.mrlongg71.vnfood.src.module.register.view.RegisterActivity;
+import vn.mrlongg71.vnfood.src.utils.SplashScreenActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +59,8 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
     private TextView txtResultCheckGift;
     private TextInputEditText edtGift;
     private double totalPrice = 0;
+    ExploreFragment exploreFragmentCallback = new ExploreFragment();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,15 +112,18 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
     }
 
     private void checkOut() {
-        Order order = new Order();
+        String orderId = String.valueOf(new Random().nextInt(900000));
         List<OrderDetails> orderDetailsList = new ArrayList<>();
         for (OrderProvisional i : NavigationActivity.orderDetails) {
             OrderDetails orderDetails = new OrderDetails();
+            orderDetails.setIdOrder(orderId);
+            orderDetails.setIdOrderDetails(String.valueOf(new Date().getTime()));
             orderDetails.setAmount(i.getAmount());
             orderDetails.setPrice(Integer.parseInt(i.getProduct().getPrice()) * i.getAmount());
-            orderDetails.setProductIdl(i.getProduct().getProductId());
+            orderDetails.setProductId(i.getProduct().getProductId());
             orderDetailsList.add(orderDetails);
         }
+        Order order = new Order(orderId, NavigationActivity.numberBadge, totalPrice, "Waitting");
 
 
         presenterOrder.addCartToServer(order, orderDetailsList);
@@ -117,7 +132,7 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
     @Override
     public void increase(OrderProvisional orderProvisional, TextView numberCart) {
         orderProvisional.setAmount(orderProvisional.getAmount() + 1);
-        numberCart.setText(orderProvisional.getAmount() + "");
+        numberCart.setText(String.valueOf(orderProvisional.getAmount()));
         handlerTotalPrice();
     }
 
@@ -132,6 +147,7 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
                     .setPositiveButton("Có", (dialog, which) -> {
                         NavigationActivity.orderDetails.remove(orderProvisional);
                         NavigationActivity.numberBadge = NavigationActivity.numberBadge - 1;
+                        exploreFragmentCallback.OnClickBadge();
                         adapterCartProvisional.notifyDataSetChanged();
                         handlerTotalPrice();
                         checkVisibleCart();
@@ -169,7 +185,24 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
 
     @Override
     public void onSuccess(String msg) {
+        //cart
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MyOrderActivity.this);
+        LayoutInflater layoutInflater = getLayoutInflater();
+        @SuppressLint("InflateParams") View viewDialogPickUp = layoutInflater.inflate(R.layout.custom_dialog_success, null);
+        builder.setView(viewDialogPickUp);
 
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
+        alertDialog.show();
+
+
+        NavigationActivity.orderDetails.clear();
+        NavigationActivity.numberBadge = 0;
+        exploreFragmentCallback.OnClickBadge();
+
+        new Handler().postDelayed(() -> finish(), 3000);
     }
 
     @Override

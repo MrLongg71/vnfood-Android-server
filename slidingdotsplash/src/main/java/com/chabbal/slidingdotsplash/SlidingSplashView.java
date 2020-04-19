@@ -73,6 +73,8 @@ public class SlidingSplashView extends FrameLayout {
 
     public void setImageResources(String[] imageResources){
         mViewPagerAdapter.setImageResources(imageResources);
+        NUM_PAGES = imageResources.length;
+
     }
     public void setPaddingBottom(int top,int bottom,int right,int left){
         tabLayout.setPadding(left,top,right,bottom);

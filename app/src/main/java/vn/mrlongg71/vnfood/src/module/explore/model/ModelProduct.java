@@ -9,6 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.mrlongg71.vnfood.src.model.BaseResponse;
 import vn.mrlongg71.vnfood.src.model.ErrorResponse;
+import vn.mrlongg71.vnfood.src.model.Images;
 import vn.mrlongg71.vnfood.src.model.Product;
 import vn.mrlongg71.vnfood.src.model.Review;
 import vn.mrlongg71.vnfood.src.module.explore.presenter.PresenterProduct;
@@ -21,7 +22,6 @@ public class ModelProduct {
     IApiVnFood apiService = APIVnFood.getAPIVnFood().create(IApiVnFood.class);
 
     public void listProduct(PresenterProduct presenterProduct) {
-        Log.d("LONgKUTE", "listProduct: ");
         Call<BaseResponse<List<Product>>> callProduct = apiService.getListProduct();
         callProduct.enqueue(new Callback<BaseResponse<List<Product>>>() {
             @Override
@@ -86,26 +86,24 @@ public class ModelProduct {
     }
 
     public void addComment(String comment, String productId, int rate, PresenterProductDetails presenterProductDetails) {
-        Call<BaseResponse<Review>> callReview = apiService.addComment(comment, rate, productId);
-        callReview.enqueue(new Callback<BaseResponse<Review>>() {
+        Call<BaseResponse<Review.ReviewDetails>> callReview = apiService.addComment(comment, rate, productId);
+        callReview.enqueue(new Callback<BaseResponse<Review.ReviewDetails>>() {
             @Override
-            public void onResponse(Call<BaseResponse<Review>> call, Response<BaseResponse<Review>> response) {
+            public void onResponse(Call<BaseResponse<Review.ReviewDetails>> call, Response<BaseResponse<Review.ReviewDetails>> response) {
                 if(response.isSuccessful()){
                     presenterProductDetails.resultAddComment(true,"Thành công");
                 }else {
-                   presenterProductDetails.resultAddComment(false,"failed");
+                    presenterProductDetails.resultAddComment(false,"failed");
                 }
-
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<Review>> call, Throwable t) {
-                Log.d("LONgKUTE", "onFailure: " + t.getMessage());
+            public void onFailure(Call<BaseResponse<Review.ReviewDetails>> call, Throwable t) {
                 presenterProductDetails.resultAddComment(false,t.getMessage());
-
             }
         });
     }
+
 
     public void getComment(String productId,PresenterProductDetails presenterProductDetails){
         Call<BaseResponse<List<Review>>> callReview = apiService.getListReview(productId);
@@ -113,16 +111,37 @@ public class ModelProduct {
             @Override
             public void onResponse(Call<BaseResponse<List<Review>>> call, Response<BaseResponse<List<Review>>> response) {
                 if(response.isSuccessful()){
+
                     presenterProductDetails.resultGetComment(true,response.body().getData());
                 }else {
-                    presenterProductDetails.resultGetComment(false,null);
+                    presenterProductDetails.resultGetComment(false,  null);
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<List<Review>>> call, Throwable t) {
-                Log.d("LONgKUTE", "onFailure: " + t.getMessage());
-                presenterProductDetails.resultGetComment(false,null);
+                presenterProductDetails.resultGetComment(false,  null);
+
+            }
+        });
+    }
+
+
+    public void getImages(String productId, PresenterProductDetails presenterProductDetails){
+        Call<BaseResponse<List<Images>>> callImageProduct = apiService.getImagesProduct(productId);
+        callImageProduct.enqueue(new Callback<BaseResponse<List<Images>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<List<Images>>> call, Response<BaseResponse<List<Images>>> response) {
+                if(response.isSuccessful()){
+                    presenterProductDetails.resultGetImages(true,response.body().getData());
+                }else {
+                    presenterProductDetails.resultGetImages(false,null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<List<Images>>> call, Throwable t) {
+                presenterProductDetails.resultGetImages(false,null);
             }
         });
     }

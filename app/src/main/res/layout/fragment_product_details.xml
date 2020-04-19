@@ -79,20 +79,16 @@
                     android:id="@+id/txtRateFoodDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_star_24dp"
                     android:gravity="center"
-                    android:text="4.4"
                     android:textSize="@dimen/text_size_20" />
 
                 <TextView
-                    android:id="@+id/txtCommentFoodNew"
+                    android:id="@+id/txtCommentFoodDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size5dp"
                     android:background="#fff"
-                    android:drawableLeft="@drawable/ic_insert_comment_24dp"
                     android:gravity="center"
-                    android:text="4.4"
                     android:textSize="@dimen/text_size_20" />
 
             </LinearLayout>
@@ -212,6 +208,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/oswald"
             android:text="@string/review"
+            android:layout_margin="@dimen/margin10"
             android:textSize="@dimen/text_size_20" />
         <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
             android:id="@+id/progress_review"
@@ -226,7 +223,16 @@
             android:id="@+id/recyclerReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
+        <TextView
+            android:id="@+id/txtNoComment"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald"
+            android:gravity="center"
+            android:textColor="@color/colorOrange"
+            android:text="@string/no_comment"
+            android:textSize="@dimen/text_size_20" />
 
     </LinearLayout>
 

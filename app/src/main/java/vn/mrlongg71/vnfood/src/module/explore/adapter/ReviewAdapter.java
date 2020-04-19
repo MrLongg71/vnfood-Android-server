@@ -13,7 +13,6 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import vn.mrlongg71.vnfood.R;
-import vn.mrlongg71.vnfood.src.model.Product;
 import vn.mrlongg71.vnfood.src.model.Review;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolderReview> {
@@ -35,9 +34,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderReview holder, int position) {
-        Review review = reviews.get(position);
-        holder.txtNameUserReview.setText(review.getUser().get(0).getUsername());
-        holder.txtRateReview.setText(review.getRate()+"");
+        Review.ReviewDetails review =  reviews.get(position).getReviews();
+        holder.txtNameUserReview.setText(review.getUserId().get(0).getUsername() + "");
+        holder.txtRateReview.setText(review.getRate() + "");
         holder.txtComment.setText(review.getComment());
     }
 
@@ -47,8 +46,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     }
 
     public class ViewHolderReview extends RecyclerView.ViewHolder {
-        TextView txtNameUserReview,txtRateReview,txtComment;
+        TextView txtNameUserReview, txtRateReview, txtComment;
         CircleImageView imgAvatarUserReview;
+
         public ViewHolderReview(@NonNull View itemView) {
             super(itemView);
             txtNameUserReview = itemView.findViewById(R.id.txtNameUserReview);

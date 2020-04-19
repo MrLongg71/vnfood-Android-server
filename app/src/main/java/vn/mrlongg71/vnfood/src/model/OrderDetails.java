@@ -3,14 +3,14 @@ package vn.mrlongg71.vnfood.src.model;
 public class OrderDetails {
     private String idOrderDetails;
     private String idOrder;
-    private String productIdl;
+    private String productId;
     private int amount;
     private double price;
 
-    public OrderDetails(String idOrderDetails, String idOrder, String productIdl, int amount, double price) {
+    public OrderDetails(String idOrderDetails, String idOrder, String productId, int amount, double price) {
         this.idOrderDetails = idOrderDetails;
         this.idOrder = idOrder;
-        this.productIdl = productIdl;
+        this.productId = productId;
         this.amount = amount;
         this.price = price;
 
@@ -35,12 +35,12 @@ public class OrderDetails {
         this.idOrder = idOrder;
     }
 
-    public String getProductIdl() {
-        return productIdl;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductIdl(String productIdl) {
-        this.productIdl = productIdl;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public int getAmount() {

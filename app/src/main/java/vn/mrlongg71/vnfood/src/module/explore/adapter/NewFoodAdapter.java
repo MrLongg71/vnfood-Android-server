@@ -69,11 +69,16 @@ public class NewFoodAdapter extends RecyclerView.Adapter<NewFoodAdapter.ViewHold
                 "🤘"};
         int randomQuick = new Random().nextInt(7);
         holder.txtTitleMar.setText(titleMar + " " +quickAction[randomQuick]);
-        Glide.with(context).load(EndPoint.BASE_URL_PUBLIC + product.getImage()).apply(new RequestOptions().placeholder(R.drawable.ic_cart)).error(R.drawable.ic_error_outline_white_24dp).into(holder.imgFood);
+        Glide.with(context)
+                .setDefaultRequestOptions(new RequestOptions().placeholder(R.drawable.ic_cart_loading))
+                .load(EndPoint.BASE_URL_PUBLIC + product.getImage())
+                .error(R.drawable.ic_error_outline_white_24dp).into(holder.imgFood);
+
         holder.layout_item_new_food.setOnClickListener(v -> {
             iOnClickProduct.OnClickProductDetails(product);
         });
         holder.txtRate.setText( "❤️" + " 4");
+        holder.txtComment.setText( "💬" + " 4");
 
     }
 

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
-    xmlns:gpb="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".src.module.favourite.view.FavouriteFragment">
+
     <LinearLayout
         android:id="@+id/layoutFavouriteEmpty"
         android:layout_width="match_parent"
@@ -20,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_icon_cart"
+            android:contentDescription="@string/todo"
             android:padding="@dimen/margin50"
-            android:src="@drawable/ic_heart_checked"
-            android:contentDescription="@string/todo" />
+            android:src="@drawable/ic_heart_checked" />
 
         <TextView
             android:layout_width="match_parent"
@@ -38,10 +39,11 @@
 
     <LinearLayout
         android:id="@+id/layoutFavourite"
-        android:visibility="gone"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +57,12 @@
             android:id="@+id/recyclerViewFavourite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin10" />
+            android:layout_marginLeft="@dimen/margin10"
+            android:layout_marginRight="@dimen/margin10"
+            android:layout_marginBottom="@dimen/margin50"
+
+
+            />
 
 
     </LinearLayout>
@@ -65,8 +72,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:gravity="center"
         android:background="@drawable/round_icon_cart"
+        android:gravity="center"
         android:visibility="visible"
         gpb:type="nexus_rotation_cross" />
 </LinearLayout>

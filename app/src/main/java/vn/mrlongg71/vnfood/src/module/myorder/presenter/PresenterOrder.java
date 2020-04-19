@@ -20,7 +20,7 @@ public class PresenterOrder implements IOrder.IPresenterOrder {
 
     @Override
     public void addCartToServer(Order order, List<OrderDetails> orderDetails) {
-        modelOrder.addToCart(order,orderDetails);
+        modelOrder.addToCart(order,orderDetails,this);
     }
 
     @Override

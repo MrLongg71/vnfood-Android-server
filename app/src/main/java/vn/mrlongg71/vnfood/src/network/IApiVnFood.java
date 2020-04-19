@@ -21,6 +21,7 @@ import vn.mrlongg71.vnfood.src.model.BaseResponse;
 import vn.mrlongg71.vnfood.src.model.Cate;
 import vn.mrlongg71.vnfood.src.model.ErrorResponse;
 import vn.mrlongg71.vnfood.src.model.Gift;
+import vn.mrlongg71.vnfood.src.model.Images;
 import vn.mrlongg71.vnfood.src.model.OrderDetails;
 import vn.mrlongg71.vnfood.src.model.Product;
 import vn.mrlongg71.vnfood.src.model.Review;
@@ -65,11 +66,15 @@ public interface IApiVnFood {
     @GET("products/list/{id}")
     Call<BaseResponse<List<Product>>> getListProductForCate(@Path("id") String cateId);
 
+    @GET("products/images/{id}")
+    Call<BaseResponse<List<Images>>> getImagesProduct(@Path("id") String productId);
+
+
 
 
     @FormUrlEncoded
     @POST("products/add_review")
-    Call<BaseResponse<Review>> addComment(@Field("comment") String comment, @Field("rate") int rate,@Field("productId") String productId);
+    Call<BaseResponse<Review.ReviewDetails>> addComment(@Field("comment") String comment, @Field("rate") int rate,@Field("productId") String productId);
 
     @GET("products/list_review")
     Call<BaseResponse<List<Review>>> getListReview(@Query("productId") String productId);
@@ -80,9 +85,14 @@ public interface IApiVnFood {
 
 
     //order
+    @FormUrlEncoded
     @POST("orders/add")
-    Call<ResponseBody> addOrder(@Body String jsonArray);
+    Call<BaseResponse<String>> addOrder(@Field("order_details") String jsonOrderDetails, @Field("order") String jsonOrder);
 
     @GET("orders/check_gift/{id}")
     Call<BaseResponse<Gift>> checkGift(@Path("id") String codeGift);
+
+    //banner
+    @GET("cates/list_banner")
+    Call<BaseResponse<List<Images>>> getBanner();
 }
