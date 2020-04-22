@@ -11,6 +11,10 @@ public interface IProduct {
         void getListProductMore(int page);
         void onResult(boolean success, List<Product> productList,String msg);
         void onResultNewFood(boolean success, List<Product> productList,String msg);
+
+        void handlerSearch(String query);
+        void resultSearch(boolean success, List<Product> productList);
+
     }
     interface IViewProduct{
         void onGetListProductSuccess(List<Product> productList);
@@ -18,5 +22,8 @@ public interface IProduct {
 
         void onGetListNewFoodSuccess(List<Product> productList);
         void onGetListNewFoodFailed(String msg);
+
+        void onSearchProductSuccess(List<Product> productList);
+        void onSearchProductFailed(String msg);
     }
 }

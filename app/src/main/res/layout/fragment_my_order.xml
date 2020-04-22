@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBlackTransparent"
     android:orientation="vertical"
     tools:context=".src.module.myorder.view.MyOrderActivity">
@@ -158,7 +160,14 @@
                     android:text="@string/check_out"
 
                     android:textColor="#fff" />
-
+                <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+                    android:id="@+id/progressOrder"
+                    android:visibility="visible"
+                    android:background="@drawable/round_icon_cart"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    gpb:type="nexus_rotation_cross"/>
             </LinearLayout>
 
 
@@ -166,5 +175,6 @@
 
 
     </LinearLayout>
+
 
 </LinearLayout>

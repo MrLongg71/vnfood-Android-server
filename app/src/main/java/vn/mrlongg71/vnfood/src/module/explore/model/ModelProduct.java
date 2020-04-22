@@ -145,5 +145,25 @@ public class ModelProduct {
             }
         });
     }
+
+    public void handlerSearch(String query,PresenterProduct presenterProduct){
+        Call<BaseResponse<List<Product>>> callSearch = apiService.getSearchProduct(query);
+        callSearch.enqueue(new Callback<BaseResponse<List<Product>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<List<Product>>> call, Response<BaseResponse<List<Product>>> response) {
+                Log.d("LONgKUTE", "onResponse: search" + response.code());
+                if(response.isSuccessful()){
+                    presenterProduct.resultSearch(true,response.body().getData());
+                }else{
+                    presenterProduct.resultSearch(false,null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<List<Product>>> call, Throwable t) {
+                presenterProduct.resultSearch(false,null);
+            }
+        });
+    }
 }
 

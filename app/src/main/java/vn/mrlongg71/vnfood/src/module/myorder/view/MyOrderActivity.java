@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,6 +44,7 @@ import vn.mrlongg71.vnfood.src.module.myorder.IOnClickCart;
 import vn.mrlongg71.vnfood.src.module.myorder.IOrder;
 import vn.mrlongg71.vnfood.src.module.myorder.presenter.PresenterOrder;
 import vn.mrlongg71.vnfood.src.module.register.view.RegisterActivity;
+import vn.mrlongg71.vnfood.src.utils.DialogLoading;
 import vn.mrlongg71.vnfood.src.utils.SplashScreenActivity;
 
 /**
@@ -59,6 +61,7 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
     private TextView txtResultCheckGift;
     private TextInputEditText edtGift;
     private double totalPrice = 0;
+    private GoogleProgressBar progressOrder;
     ExploreFragment exploreFragmentCallback = new ExploreFragment();
 
 
@@ -81,6 +84,7 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
         txtResultCheckGift = findViewById(R.id.txtResultCheckGift);
         btnCheckGift = findViewById(R.id.btnCheckGift);
         edtGift = findViewById(R.id.edtGift);
+        progressOrder = findViewById(R.id.progressOrder);
         presenterOrder = new PresenterOrder(this);
 
         btnCheckGift.setOnClickListener(v -> getCodeGift());
@@ -112,6 +116,7 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
     }
 
     private void checkOut() {
+        DialogLoading.LoadingGoogle(true,progressOrder);
         String orderId = String.valueOf(new Random().nextInt(900000));
         List<OrderDetails> orderDetailsList = new ArrayList<>();
         for (OrderProvisional i : NavigationActivity.orderDetails) {
@@ -185,6 +190,7 @@ public class MyOrderActivity extends AppCompatActivity implements IOnClickCart, 
 
     @Override
     public void onSuccess(String msg) {
+        DialogLoading.LoadingGoogle(false,progressOrder);
         //cart
         final AlertDialog.Builder builder = new AlertDialog.Builder(MyOrderActivity.this);
         LayoutInflater layoutInflater = getLayoutInflater();

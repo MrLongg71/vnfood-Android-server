@@ -37,7 +37,7 @@ public interface IApiVnFood {
 
     @FormUrlEncoded
     @POST("users/register")
-    Call<User> handlerRegister(
+    Call<BaseResponse<User>> handlerRegister(
                                 @Field("email") String email,
                                @Field("password") String password,
                                @Field("phone") String phone,
@@ -68,6 +68,9 @@ public interface IApiVnFood {
 
     @GET("products/images/{id}")
     Call<BaseResponse<List<Images>>> getImagesProduct(@Path("id") String productId);
+
+    @GET("products/search")
+    Call<BaseResponse<List<Product>>> getSearchProduct(@Query("search") String query);
 
 
 

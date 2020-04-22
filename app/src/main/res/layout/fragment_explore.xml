@@ -63,10 +63,13 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_weight="8"
+                    android:id="@+id/edtSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="text"
                     android:layout_margin="@dimen/margin10"
+                    android:imeOptions="actionSearch"
                     android:background="@drawable/custom_edittext_round"
                     android:drawableStart="@drawable/ic_search_24dp"
                     android:hint="@string/search" />

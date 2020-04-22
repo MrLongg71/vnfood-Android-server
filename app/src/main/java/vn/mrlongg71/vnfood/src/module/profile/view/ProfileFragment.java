@@ -2,9 +2,9 @@ package vn.mrlongg71.vnfood.src.module.profile.view;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -19,14 +19,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.StyleRes;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -46,9 +43,10 @@ import okhttp3.RequestBody;
 import vn.mrlongg71.vnfood.R;
 import vn.mrlongg71.vnfood.src.model.User;
 import vn.mrlongg71.vnfood.src.module.profile.presenter.PresenterProfile;
-import vn.mrlongg71.vnfood.src.module.register.view.RegisterActivity;
 import vn.mrlongg71.vnfood.src.utils.DialogLoading;
 import vn.mrlongg71.vnfood.src.utils.SplashScreenActivity;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ProfileFragment extends Fragment implements IViewProfile, View.OnClickListener {
 
@@ -59,7 +57,6 @@ public class ProfileFragment extends Fragment implements IViewProfile, View.OnCl
     private LinearLayout layoutChangePassword;
     private String realPathImages;
     private Dialog dialogChanePass;
-
 
 
     @Override
@@ -80,15 +77,7 @@ public class ProfileFragment extends Fragment implements IViewProfile, View.OnCl
         imgProfile = v.findViewById(R.id.imageProfile);
         layoutChangePassword = v.findViewById(R.id.layoutChangePassword);
         layoutChangePassword.setOnClickListener(this);
-
-
-
-
     }
-
-
-
-
     @Override
     public void onSuccess(User user) {
         if (user != null) {
@@ -105,10 +94,14 @@ public class ProfileFragment extends Fragment implements IViewProfile, View.OnCl
 
     @Override
     public void onChangePasswordSuccess(String msg) {
-        DialogLoading.LoadingGoogle(false,progressBarProfile);
+        DialogLoading.LoadingGoogle(false, progressBarProfile);
         dialogChanePass.dismiss();
-        Toasty.success(Objects.requireNonNull(getActivity()), msg, Toasty.LENGTH_LONG).show();
+        Toasty.success(Objects.requireNonNull(getActivity()), "Đổi mật khẩu thành công", Toasty.LENGTH_LONG).show();
         Toasty.warning(Objects.requireNonNull(getActivity()), "Vui lòng đăng nhập lại!", Toast.LENGTH_SHORT, true).show();
+        SharedPreferences pref = getActivity().getSharedPreferences("User", MODE_PRIVATE);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = pref.edit();
+        editor.putString("token", null);
+        editor.apply();
         new Handler().postDelayed(() -> {
             startActivity(new Intent(getActivity(), SplashScreenActivity.class));
             getActivity().finish();
@@ -117,7 +110,7 @@ public class ProfileFragment extends Fragment implements IViewProfile, View.OnCl
 
     @Override
     public void onChangePasswordFail(String msg) {
-        DialogLoading.LoadingGoogle(false,progressBarProfile);
+        DialogLoading.LoadingGoogle(false, progressBarProfile);
         dialogChanePass.dismiss();
         Toasty.error(Objects.requireNonNull(getActivity()), msg, Toasty.LENGTH_LONG).show();
     }
@@ -158,7 +151,7 @@ public class ProfileFragment extends Fragment implements IViewProfile, View.OnCl
             } else if (!newPasswordAgain.equals(newPassword)) {
                 edtNewPasswordAgain.setError("New Password Different");
             } else {
-                DialogLoading.LoadingGoogle(true,progressBarProfile);
+                DialogLoading.LoadingGoogle(true, progressBarProfile);
                 presenterProfile.changePassword(oldPassword, newPassword);
             }
         });

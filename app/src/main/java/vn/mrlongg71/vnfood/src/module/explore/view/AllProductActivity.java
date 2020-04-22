@@ -118,6 +118,16 @@ public class AllProductActivity extends AppCompatActivity implements IProduct.IV
     }
 
     @Override
+    public void onSearchProductSuccess(List<Product> productList) {
+        //null
+    }
+
+    @Override
+    public void onSearchProductFailed(String msg) {
+        //null
+    }
+
+    @Override
     public void OnClickProductDetails(Product product) {
 
         Intent intent = new Intent(AllProductActivity.this, ProductDetailsActivity.class);

@@ -2,6 +2,7 @@ package vn.mrlongg71.vnfood.src.module.explore.view;
 
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chabbal.slidingdotsplash.SlidingSplashView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 import com.nex3z.notificationbadge.NotificationBadge;
 
@@ -48,7 +52,9 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
     private List<Product> products, productsNew;
     private GoogleProgressBar progressBarExplore;
     private static NotificationBadge badge;
+    private TextInputEditText edtSearch;
     private NestedScrollView nestedScrollMenu;
+    private PresenterProduct presenterProduct;
     private androidx.appcompat.widget.Toolbar toolbarExplore;
 
 
@@ -57,7 +63,6 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
         init(view);
-        Log.d("LONgKUTE", "onCreateView: ex");
         onScrollListener();
         return view;
     }
@@ -116,6 +121,7 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
         splashExplore = view.findViewById(R.id.splashExplore);
         progressBarExplore = view.findViewById(R.id.progressExplore);
         recyclerAllProduct = view.findViewById(R.id.recyclerAllProduct);
+        edtSearch = view.findViewById(R.id.edtSearch);
         FrameLayout framBadge = view.findViewById(R.id.layout_Badge);
         badge = framBadge.findViewById(R.id.badge);
         Button btnViewAllProduct = view.findViewById(R.id.btnViewAllProduct);
@@ -130,7 +136,7 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
             products.clear();
             badge.setNumber(NavigationActivity.numberBadge);
         }
-        PresenterProduct presenterProduct = new PresenterProduct(this);
+        presenterProduct = new PresenterProduct(this);
 
         DialogLoading.LoadingGoogle(true, progressBarExplore);
 
@@ -138,8 +144,20 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
         presenterProduct.getListProductMore(new Random().nextInt(5));
         presenterProduct.getNewListProduct();
         presenterBanner.getBanner();
+        handlerSearch();
 
+    }
 
+    private void handlerSearch() {
+        edtSearch.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                DialogLoading.LoadingGoogle(true, progressBarExplore);
+
+                presenterProduct.handlerSearch(v.getText().toString());
+            }
+            return true;
+
+        });
     }
 
     private void viewAllProduct() {
@@ -192,6 +210,38 @@ public class ExploreFragment extends Fragment implements IProduct.IViewProduct, 
     public void onGetListNewFoodFailed(String msg) {
         Toasty.error(Objects.requireNonNull(getActivity()), msg, Toasty.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    public void onSearchProductSuccess(List<Product> productList) {
+        DialogLoading.LoadingGoogle(false, progressBarExplore);
+        if (productList != null && productList.size() > 0) {
+            edtSearch.setText("");
+            Dialog dialog = new Dialog(Objects.requireNonNull(getActivity()), android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+            dialog.setContentView(R.layout.custom_dialog_search_list);
+            RecyclerView recyclerSearch = dialog.findViewById(R.id.recyclerSearch);
+            TextView txtCloseDialogSearch = dialog.findViewById(R.id.txtCloseDialogSearch);
+            NewFoodAdapter searchAdapter = new NewFoodAdapter(getActivity(), R.layout.custom_layout_new_food, productList, this, "Search");
+
+            txtCloseDialogSearch.setOnClickListener(v -> dialog.dismiss());
+            int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.margin5);
+
+            recyclerSearch.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            recyclerSearch.addItemDecoration(new ItemOffsetDecoration(spacingInPixels));
+            recyclerSearch.setNestedScrollingEnabled(false);
+            recyclerSearch.setAdapter(searchAdapter);
+            searchAdapter.notifyDataSetChanged();
+            dialog.show();
+
+        } else {
+            Toasty.info(getActivity(), "Không tìm thấy sản phẩm", Toasty.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onSearchProductFailed(String msg) {
+        DialogLoading.LoadingGoogle(false, progressBarExplore);
+        Toasty.warning(getActivity(), msg, Toasty.LENGTH_LONG).show();
     }
 
     @Override

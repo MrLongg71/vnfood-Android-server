@@ -31,13 +31,10 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initView();
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogLoading.LoadingGoogle(true, progress_register);
-                registerUser();
+        btnRegister.setOnClickListener(v -> {
+            DialogLoading.LoadingGoogle(true, progress_register);
+            registerUser();
 
-            }
         });
     }
 
@@ -48,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements IViewRegister
             user.setUsername(edtUserNameRegister.getText().toString().trim());
             user.setPassword(edtPasswordRegister.getText().toString().trim());
             user.setPhone(edtPhoneRegister.getText().toString().trim());
-            presenterRegister.handlerRegister(null);
+            presenterRegister.handlerRegister(user);
         }
 
     }

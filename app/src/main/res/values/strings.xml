@@ -18,7 +18,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="search">Search</string>
     <string name="new_food" translatable="false">New Food</string>
     <string name="hot_food" translatable="false">Hot Food</string>
     <string name="vn_food" translatable="false">VN FOOD</string>
@@ -53,4 +52,5 @@
     <string name="old_password">Old Password</string>
     <string name="darkmode">DarkMode</string>
     <string name="no_comment">No Comment</string>
+    <string name="search">Search</string>
 </resources>
