@@ -5,10 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_item_new_food"
     app:cardCornerRadius="@dimen/margin10"
+    android:background="@color/colorWhite"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:background="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">

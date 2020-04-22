@@ -1,7 +1,5 @@
 package vn.mrlongg71.vnfood.src.module.explore.presenter;
 
-import android.util.Log;
-
 import java.util.List;
 
 import vn.mrlongg71.vnfood.src.model.Product;
@@ -23,7 +21,6 @@ public class PresenterProduct implements IProduct.IPresenterProduct {
     }
 
 
-
     @Override
     public void getNewListProduct() {
         modelProduct.listNewProduct(this);
@@ -31,7 +28,7 @@ public class PresenterProduct implements IProduct.IPresenterProduct {
 
     @Override
     public void getListProductMore(int page) {
-        modelProduct.listProductMore(page,this);
+        modelProduct.listProductMore(page, this);
     }
 
     @Override
@@ -50,6 +47,25 @@ public class PresenterProduct implements IProduct.IPresenterProduct {
             iViewProduct.onGetListNewFoodSuccess(productList);
         } else {
             iViewProduct.onGetListNewFoodFailed(msg);
+        }
+    }
+
+    @Override
+    public void handlerSearch(String query) {
+        modelProduct.handlerSearch(query, this);
+    }
+
+    @Override
+    public void resultSearch(boolean success, List<Product> productList) {
+        if (success) {
+            if (productList != null && productList.size() > 0) {
+                iViewProduct.onSearchProductSuccess(productList);
+            } else {
+                iViewProduct.onSearchProductSuccess(null);
+            }
+
+        }else{
+            iViewProduct.onSearchProductFailed("Có lỗi xảy ra!");
         }
     }
 }

@@ -200,6 +200,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
 
     @Override
     public void onSuccessAddComment(String msg) {
+        txtNoComment.setVisibility(View.GONE);
         edtComment.setText("");
         rateBar.setRating(0);
         DialogLoading.LoadingGoogle(false, progress_review);
@@ -222,6 +223,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements IProduc
         DialogLoading.LoadingGoogle(false, progress_review);
 
         if (!reviews.isEmpty()) {
+            txtNoComment.setVisibility(View.GONE);
             showReview(reviews);
         }else {
             txtNoComment.setVisibility(View.VISIBLE);

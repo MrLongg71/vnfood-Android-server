@@ -29,14 +29,14 @@ public class ModelBanner {
                     }
                     presenterBanner.resultGetBanner(true, list,"");
                 }else {
-                    presenterBanner.resultGetBanner(true, null,"" + response.code());
+                    presenterBanner.resultGetBanner(false, null,"" + response.code());
 
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<List<Images>>> call, Throwable t) {
-                presenterBanner.resultGetBanner(true, null,t.getMessage());
+                presenterBanner.resultGetBanner(false, null,t.getMessage());
 
             }
         });

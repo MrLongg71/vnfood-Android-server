@@ -107,6 +107,16 @@ public class FavouriteFragment extends Fragment implements IProduct.IViewProduct
 
     @Override
     public void onGetListNewFoodFailed(String msg) {
+        //null
+    }
+
+    @Override
+    public void onSearchProductSuccess(List<Product> productList) {
+        //null
+    }
+
+    @Override
+    public void onSearchProductFailed(String msg) {
 
     }
 
